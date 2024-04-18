@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <h1>Jogo da Forca</h1>
+
+    <section v-if="tela == 'inicio'" id="inicio">
+      <formulario/>
+    </section>
+
+
+
+    <section v-if="tela == 'jogo'" id="jogo">
+      jogo
+    </section>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import '@/css/global.css';
+import formulario from './components/formulario';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      tela: 'inicio'
+    }
+  },
   components: {
-    HelloWorld
+    formulario
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>
