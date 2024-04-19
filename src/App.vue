@@ -3,13 +3,23 @@
     <h1>Jogo da Forca</h1>
 
     <section v-if="tela == 'inicio'" id="inicio">
-      <formulario/>
+      <formulario v-if="etapa === 'palavra'"
+      title="Defina a palavra"
+      button="Proximo"
+      :action="SetPalavra"/>
+      
+      <formulario v-if="etapa === 'dica'"
+      
+
+      title="Defina a dica"
+      button="Iniciar jogo"
+      :action="SetDica"/>
     </section>
 
 
 
     <section v-if="tela == 'jogo'" id="jogo">
-      jogo
+      <jogo/>
     </section>
   </div>
 </template>
@@ -17,17 +27,35 @@
 <script>
 import '@/css/global.css';
 import formulario from './components/formulario';
+import jogo from './components/jogo';
 
 export default {
   name: 'App',
   data() {
     return {
-      tela: 'inicio'
+      tela: 'inicio',
+      etapa: 'palavra',
+      palavra: '',
+      dica: '',
+      erros: 0
     }
   },
   components: {
-    formulario
-  }
+    formulario,
+    jogo,
+    
+  },
+  methods: {
+    SetPalavra(palavra) {
+      this.palavra = palavra;
+      this.etapa = 'dica';
+    },
+    SetDica(dica) {
+      this.dica = dica;
+      this.tela =   'jogo',
+      this.etapa = 'jogo';
+    }
+  },
 }
 </script>
 
